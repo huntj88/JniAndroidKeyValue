@@ -10,14 +10,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var last: String? = "wow"
+        var goToKey: String? = "wow"
         var keyValueStore = newKeyStoreValue()
 
         this.button.setOnClickListener {
-            sample_text.text = last?.let { keyValueStore.get(it)?: "wow" }.also {
-                last = it
+            sample_text.text = goToKey?.let { keyValueStore.get(it)?: "woow" }.also {
+                goToKey = it
 
-                if(last == "wow") {
+                if(goToKey == "wow") {
                     keyValueStore.close()
                     keyValueStore = newKeyStoreValue()
                 }
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun newKeyStoreValue() = KeyValueStore().apply {
-        put("wow", "woow")
+        put("wow", null)
         put("woow", "bob")
         put("bob", "sup")
         put("sup", "wow")

@@ -9,11 +9,10 @@
 #include "Store.hpp"
 
 std::string Store::getVal(std::string key) {
-    return *(rootNode->get(key));
+    return *(rootNode->get(std::move(key)));
 };
 
 void Store::putVal(std::string key, std::string value) {
-    
     if(rootNode) {
         rootNode->insert(&rootNode, key, value);
     } else {

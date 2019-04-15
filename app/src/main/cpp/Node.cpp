@@ -10,8 +10,8 @@
 #include "Node.hpp"
 
 Node::Node(std::string key, std::string value) {
-    this->key = key;
-    this->value = value;
+    this->key = std::move(key);
+    this->value = std::move(value);
 }
 
 void Node::insert(Node ** rootNode, std::string newKey, std::string newValue) {
@@ -50,7 +50,7 @@ std::string * Node::get(std::string key) {
     } else if(next) {
         return next->get(key);
     } else {
-        return nullptr;
+        return (std::string *) std::string().data();
     }
 }
 

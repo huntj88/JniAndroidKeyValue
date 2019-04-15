@@ -8,8 +8,6 @@
 #include "string"
 #include "Store.hpp"
 
-// auto store = std::make_unique<Store>();
-
 extern "C" JNIEXPORT jlong JNICALL
 Java_me_jameshunt_nativejni_KeyValueStore_jniInit(JNIEnv *env, jobject cls) {
     auto store = new Store();
