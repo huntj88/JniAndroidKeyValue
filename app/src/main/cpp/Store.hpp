@@ -19,7 +19,7 @@ public:
     std::string getVal(std::string key);
     void putVal(std::string key, std::string value);
 private:
-    Node * rootNode;
+    Node * rootNode = nullptr;
 };
 
 #endif /* Store_hpp */

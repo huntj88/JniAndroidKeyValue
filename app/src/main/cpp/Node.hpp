@@ -21,7 +21,7 @@ public:
     std::string * get(std::string key);
     
 private:
-    Node * next;
+    Node * next = nullptr;
     std::string key;
     std::string value;
 };

@@ -34,13 +34,13 @@ Java_me_jameshunt_nativejni_KeyValueStore_putJni(
         JNIEnv *env,
         jobject cls,
         jlong ptrLong,
-        jstring key,
-        jstring value) {
+        jstring jKey,
+        jstring jValue) {
 
-    std::string key1 = env->GetStringUTFChars(key, nullptr);
-    std::string value1 = env->GetStringUTFChars(value, nullptr);
+    std::string key = env->GetStringUTFChars(jKey, nullptr);
+    std::string value = env->GetStringUTFChars(jValue, nullptr);
     auto store = reinterpret_cast<Store *>(ptrLong);
-    store->putVal(key1, value1);
+    store->putVal(key, value);
 }
 
 extern "C" JNIEXPORT void JNICALL
@@ -49,6 +49,5 @@ Java_me_jameshunt_nativejni_KeyValueStore_finishJni(
         jobject cls,
         jlong ptrLong) {
 
-    auto store = reinterpret_cast<Store *>(ptrLong);
-    delete store;
+    delete reinterpret_cast<Store *>(ptrLong);
 }

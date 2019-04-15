@@ -1,6 +1,6 @@
 package me.jameshunt.nativejni
 
-class KeyValueStore : AutoCloseable {
+class KeyValueStore {
 
     private var ptr: Long = 0
 
@@ -15,11 +15,11 @@ class KeyValueStore : AutoCloseable {
         ptr = jniInit()
     }
 
-    fun put(key: String, value: String) {
+    fun put(key: String, value: String?) {
         putJni(ptr = ptr, key = key, value = value)
     }
 
-    fun get(key: String): String {
+    fun get(key: String): String? {
         return getJni(ptr = ptr, key = key)
     }
 
@@ -27,13 +27,12 @@ class KeyValueStore : AutoCloseable {
         close()
     }
 
-    override fun close() {
-        println("close me plz")
+    fun close() {
         finishJni(ptr)
     }
 
     private external fun jniInit(): Long
-    private external fun getJni(ptr: Long, key: String): String
-    private external fun putJni(ptr: Long, key: String, value: String)
+    private external fun getJni(ptr: Long, key: String): String?
+    private external fun putJni(ptr: Long, key: String, value: String?)
     private external fun finishJni(ptr: Long)
 }
